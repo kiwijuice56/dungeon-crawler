@@ -151,33 +151,28 @@ transform = Transform3D(-2.62268e-08, 0, 1, 0, 0.15, 0, -0.6, 0, -4.37114e-08, 2
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="." index="25"]
-transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 10, 2.5, 3.62527)
-mesh = SubResource("QuadMesh_ypr72")
-surface_material_override/0 = SubResource("StandardMaterial3D_mntvs")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="." index="26"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="." index="25"]
 transform = Transform3D(-2.62268e-08, 0, 1, 0, 0.15, 0, -0.6, 0, -4.37114e-08, 8.07321, 3.77533, 4.81985)
 visible = false
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="." index="27"]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="." index="26"]
 transform = Transform3D(-2.62268e-08, 0, 1, 0, 0.15, 0, -0.6, 0, -4.37114e-08, -2.26957, 3.77533, 4.81985)
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="." index="28"]
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="." index="27"]
 transform = Transform3D(-2.62268e-08, 0, 1, 0, 0.15, 0, -0.6, 0, -4.37114e-08, 13.7192, 3.77533, 4.81985)
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="." index="29"]
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="." index="28"]
 transform = Transform3D(-2.62268e-08, 0, 1, 0, 0.15, 0, -0.6, 0, -4.37114e-08, 20.2971, 3.77533, 4.81985)
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="30"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="29"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 0.8, 0, -8.74228e-08, 0, -1, 10, 2.5, 5.98)
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_mntvs")

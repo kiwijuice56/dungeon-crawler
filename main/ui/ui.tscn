@@ -1,15 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctx0wmg7t5wmu"]
+[gd_scene load_steps=13 format=3 uid="uid://ctx0wmg7t5wmu"]
 
+[ext_resource type="Script" path="res://main/ui/ui.gd" id="1_1afa5"]
 [ext_resource type="Theme" uid="uid://dqmisef6xlp7p" path="res://main/ui/theme.tres" id="1_iar7h"]
 [ext_resource type="Script" path="res://main/viewport_squisher.gd" id="2_n7dh2"]
 [ext_resource type="Shader" path="res://main/crt.gdshader" id="3_edcbf"]
+[ext_resource type="AudioStream" uid="uid://rceywk4p0gk6" path="res://main/ui/accept.ogg" id="5_6chxn"]
+[ext_resource type="AudioStream" uid="uid://bgwe61hwmhpce" path="res://main/ui/select.ogg" id="6_kex14"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0t8h"]
+
+[sub_resource type="Animation" id="Animation_vx7gq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6fu7e"]
+resource_name = "flicker"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_be0fd"]
+_data = {
+"RESET": SubResource("Animation_vx7gq"),
+"flicker": SubResource("Animation_6fu7e")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sj6lp"]
 shader = ExtResource("3_edcbf")
 shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.3
 shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.1
+shader_parameter/grille_opacity = 0.3
 shader_parameter/resolution = Vector2(256, 144)
 shader_parameter/pixelate = true
 shader_parameter/roll = false
@@ -28,7 +70,14 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_euprn"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("5_6chxn")
+stream_0/weight = 1.0
+
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_1afa5")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -55,10 +104,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_iar7h")
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer"]
 layout_mode = 2
@@ -75,6 +124,99 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 4
 text = "sanity: 100%"
 
+[node name="TextContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f0t8h")
+
+[node name="Text" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/TextContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/line_separation = 0
+visible_characters_behavior = 1
+
+[node name="ChoiceContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f0t8h")
+
+[node name="Accept" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 0
+text = ">"
+fit_content = true
+autowrap_mode = 0
+visible_characters_behavior = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer/Accept"]
+libraries = {
+"": SubResource("AnimationLibrary_be0fd")
+}
+speed_scale = 1.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Choice1" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 0
+fit_content = true
+autowrap_mode = 0
+visible_characters_behavior = 1
+
+[node name="Choice2" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 0
+fit_content = true
+autowrap_mode = 0
+visible_characters_behavior = 1
+
+[node name="Choice3" type="RichTextLabel" parent="SubViewportContainer/SubViewport/MarginContainer/ChoiceContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 0
+fit_content = true
+autowrap_mode = 0
+visible_characters_behavior = 1
+
 [node name="CRTFilter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_sj6lp")
 anchors_preset = 15
@@ -82,3 +224,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_euprn")
+pitch_scale = 0.7
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_kex14")
+volume_db = -10.0

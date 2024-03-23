@@ -16,7 +16,12 @@ var roll: float = 0
 var tween: Tween
 var roll_tween: Tween
 
+var can_move: bool = true
+
 func _process(delta: float) -> void:
+	if not can_move:
+		return
+	
 	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 12)
 	
 	for inp in INPUT:

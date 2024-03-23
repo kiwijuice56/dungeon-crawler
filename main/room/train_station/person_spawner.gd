@@ -1,3 +1,4 @@
+class_name PersonSpawner
 extends Node3D
 
 
