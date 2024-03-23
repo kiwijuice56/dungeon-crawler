@@ -1,6 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://dos4ovvsfyhpv"]
+[gd_scene load_steps=6 format=3 uid="uid://dos4ovvsfyhpv"]
 
 [ext_resource type="Script" path="res://main/player/player.gd" id="1_blhgx"]
+[ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_itxht"]
+
+[sub_resource type="Animation" id="Animation_608c5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_bl0xc"]
+resource_name = "bob"
+length = 0.25
+step = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.102, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0.5), Vector3(0, 0.55, 0.5), Vector3(0, 0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsrqb"]
+_data = {
+"RESET": SubResource("Animation_608c5"),
+"bob": SubResource("Animation_bl0xc")
+}
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_blhgx")
@@ -9,7 +59,19 @@ script = ExtResource("1_blhgx")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_lsrqb")
+}
+
 [node name="RayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.469976, 0)
 target_position = Vector3(0, 0, -1)
+
+[node name="StepPlayer" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_itxht")
+volume_db = -9.0
+unit_size = 5.0
+pitch_scale = 1.1
