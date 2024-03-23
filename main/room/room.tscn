@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0fjkfub1d6ft"]
+
+[ext_resource type="Script" path="res://main/room/room.gd" id="1_wt3pp"]
+[ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_fqngn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+panorama = ExtResource("2_fqngn")
+
+[sub_resource type="Sky" id="Sky_0vepx"]
+sky_material = SubResource("PanoramaSkyMaterial_7640v")
+
+[sub_resource type="Environment" id="Environment_od7lq"]
+background_mode = 2
+sky = SubResource("Sky_0vepx")
+ambient_light_sky_contribution = 0.0
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_wt3pp")
+
+[node name="GridMap" type="GridMap" parent="."]
+cell_size = Vector3(1, 1, 1)
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_od7lq")

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcxyqnv3eksiv"
-path.s3tc="res://.godot/imported/sky.jpg-e80f3ca77acda2087a24c1b7d29eb025.s3tc.ctex"
+path.s3tc="res://.godot/imported/sky.jpg-47685cf9b7b464db47b8cbf2d7a540c8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://main/room/sky.jpg"
-dest_files=["res://.godot/imported/sky.jpg-e80f3ca77acda2087a24c1b7d29eb025.s3tc.ctex"]
+source_file="res://main/room/train_station/sky.jpg"
+dest_files=["res://.godot/imported/sky.jpg-47685cf9b7b464db47b8cbf2d7a540c8.s3tc.ctex"]
 
 [params]
 

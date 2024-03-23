@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dantwqubjojoq"]
+
+[ext_resource type="Texture2D" uid="uid://144jrlxxiw73" path="res://main/room/train_station/person.png" id="1_rscpc"]
+[ext_resource type="Script" path="res://main/room/train_station/person.gd" id="2_e7kq5"]
+
+[node name="Person" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 0.715, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(0.301961, 1, 1, 1)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_rscpc")
+script = ExtResource("2_e7kq5")
+colors = Array[Color]([Color(0, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])

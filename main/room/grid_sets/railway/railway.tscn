@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3ds2bba0pf21"]
+
+[ext_resource type="PackedScene" uid="uid://damitdc00nuri" path="res://main/room/grid_sets/railway/railway.blend" id="1_j5hoi"]
+[ext_resource type="Texture2D" uid="uid://cqua7btmbbagm" path="res://main/room/grid_sets/railway/wall.png" id="2_1qldn"]
+[ext_resource type="Texture2D" uid="uid://cyiwuie4hd36o" path="res://main/room/grid_sets/railway/floor.png" id="2_8s55p"]
+[ext_resource type="Texture2D" uid="uid://cac6df6gn0lu5" path="res://main/room/grid_sets/railway/metal.png" id="3_s4aj5"]
+[ext_resource type="Texture2D" uid="uid://dtqm5o0hjroao" path="res://main/room/grid_sets/railway/metal2.png" id="5_1gy4v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57a3q"]
+albedo_texture = ExtResource("2_1qldn")
+metallic_specular = 1.0
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26kx0"]
+albedo_texture = ExtResource("5_1gy4v")
+metallic = 0.74
+metallic_specular = 0.09
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lewvj"]
+albedo_texture = ExtResource("2_8s55p")
+metallic_specular = 0.0
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v608b"]
+albedo_texture = ExtResource("3_s4aj5")
+metallic = 0.29
+metallic_specular = 0.41
+texture_filter = 0
+
+[node name="railway" instance=ExtResource("1_j5hoi")]
+
+[node name="Wall" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_57a3q")
+
+[node name="Roof" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_26kx0")
+
+[node name="FloorEdge" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lewvj")
+surface_material_override/1 = SubResource("StandardMaterial3D_v608b")
+
+[node name="Floor1" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lewvj")
+
+[node name="Floor1_001" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_26kx0")

@@ -2,7 +2,7 @@ class_name Player
 extends Node3D
 
 var STEP: float = 1.0
-var TURN_SPEED: float = 0.38
+var TURN_SPEED: float = 0.32
 var MOVE_SPEED: float = 0.25
 var ROLL: float = 0.04
 

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dqmisef6xlp7p"]
+
+[ext_resource type="FontFile" uid="uid://ygvmx83m4o1u" path="res://main/ui/VCR_OSD_MONO_1.001.ttf" id="1_ii6qo"]
+
+[sub_resource type="FontVariation" id="FontVariation_jud5p"]
+base_font = ExtResource("1_ii6qo")
+
+[resource]
+default_font = SubResource("FontVariation_jud5p")
+default_font_size = 20
