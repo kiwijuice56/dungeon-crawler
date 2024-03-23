@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctx0wmg7t5wmu"]
+
+[ext_resource type="Theme" uid="uid://dqmisef6xlp7p" path="res://main/ui/theme.tres" id="1_iar7h"]
+[ext_resource type="Script" path="res://main/viewport_squisher.gd" id="2_n7dh2"]
+[ext_resource type="Shader" path="res://main/crt.gdshader" id="3_edcbf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sj6lp"]
+shader = ExtResource("3_edcbf")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.3
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.1
+shader_parameter/resolution = Vector2(256, 144)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.04
+shader_parameter/aberration = 0.015
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.216
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iar7h")
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(448, 256)
+size_2d_override = Vector2i(448, 256)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+script = ExtResource("2_n7dh2")
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iar7h")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SanityLabel" type="Label" parent="SubViewportContainer/SubViewport/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.223529)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+text = "sanity: 100%"
+
+[node name="CRTFilter" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sj6lp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

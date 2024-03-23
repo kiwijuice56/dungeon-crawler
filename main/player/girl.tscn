@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cps2adfx3lrho"]
+
+[ext_resource type="PackedScene" uid="uid://pok56aw0jl6" path="res://main/player/girl.blend" id="1_m4o5y"]
+
+[node name="girl" instance=ExtResource("1_m4o5y")]
+
+[node name="Cube_004" parent="." index="3"]
+visible = false
+
+[node name="Cube_005" parent="." index="4"]
+visible = false

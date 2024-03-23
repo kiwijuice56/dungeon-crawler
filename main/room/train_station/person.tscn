@@ -11,7 +11,7 @@ stream_0/stream = ExtResource("3_qseih")
 stream_0/weight = 1.0
 
 [node name="Person" type="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 0.715, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.715, 0, 0, 0, 1, 0, 0.0596501, 0)
 modulate = Color(0.301961, 1, 1, 1)
 billboard = 1
 texture_filter = 0

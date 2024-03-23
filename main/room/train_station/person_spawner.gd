@@ -9,4 +9,4 @@ func summon() -> void:
 	var person: Person =  preload("res://main/room/train_station/person.tscn").instantiate()
 	add_child(person)
 	person.position.z += 1.2 * (randf() - 0.5)
-	$Timer.start(randf() + 0.9)
+	$Timer.start(randf() + 2.4)
