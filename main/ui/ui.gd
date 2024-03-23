@@ -1,6 +1,9 @@
 class_name UI
 extends CanvasLayer
 
+var choice_prefix: String = "[shake rate=20.0 level=5 connected=1] >"
+var choice_suffix: String = "[/shake]"
+
 var idx: int = 0
 var selecting: bool = false
 var options_len: int = 3
@@ -25,8 +28,9 @@ func _input(event: InputEvent) -> void:
 	
 	if selecting and idx != old_idx:
 		%SelectPlayer.playing = true
-		%VBoxContainer.get_child(old_idx).text = %VBoxContainer.get_child(old_idx).text.substr(2)
-		%VBoxContainer.get_child(idx).text = "> " + %VBoxContainer.get_child(idx).text
+		var text: String =  %VBoxContainer.get_child(old_idx).text
+		%VBoxContainer.get_child(old_idx).text = text.substr(len(choice_prefix), len(text) - len(choice_prefix) - len(choice_suffix))
+		%VBoxContainer.get_child(idx).text = choice_prefix + %VBoxContainer.get_child(idx).text + choice_suffix
 
 func show_text(text: String, accept: bool = true, speed: float = 0.03) -> void:
 	%Text.visible_characters = 0
@@ -58,7 +62,7 @@ func show_options(options: Array, speed: float = 0.03) -> int:
 	options_len = len(options)
 	idx = 0
 	selecting = true
-	%VBoxContainer.get_child(idx).text = "> " + %VBoxContainer.get_child(idx).text
+	%VBoxContainer.get_child(idx).text = choice_prefix + %VBoxContainer.get_child(idx).text + choice_suffix
 	set_process_input(true)
 	var out: int = await accepted
 	for i in range(0, 3):
