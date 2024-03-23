@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://4x1oujtvonkv"]
+
+[ext_resource type="PackedScene" uid="uid://ofryugg7ugrh" path="res://main/room/grid_sets/glass/glass.blend" id="1_qnhv0"]
+[ext_resource type="Shader" path="res://main/room/grid_sets/glass/glass.gdshader" id="2_nhe8n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xo5rl"]
+render_priority = 0
+shader = ExtResource("2_nhe8n")
+shader_parameter/albedo = Color(0.6, 0.882353, 1, 0.709804)
+shader_parameter/roughness = 0.33
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(1, 1, 1, 0.286275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_imvsh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mfne"]
+albedo_color = Color(0.721569, 0.870588, 1, 1)
+
+[node name="glass" instance=ExtResource("1_qnhv0")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_xo5rl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_imvsh")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7mfne")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Cube_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D2" index="0"]
+shape = SubResource("BoxShape3D_imvsh")
