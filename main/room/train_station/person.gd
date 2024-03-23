@@ -15,7 +15,7 @@ func _ready() -> void:
 	modulate = colors.pick_random()
 
 func _process(delta: float) -> void:
-	position.x += speed * delta * 4
+	position.x += speed * delta * 2
 	
 	if global_position.x < -32 or global_position.x > 32:
 		queue_free()

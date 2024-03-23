@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dantwqubjojoq"]
+[gd_scene load_steps=5 format=3 uid="uid://dantwqubjojoq"]
 
 [ext_resource type="Texture2D" uid="uid://144jrlxxiw73" path="res://main/room/train_station/person.png" id="1_rscpc"]
 [ext_resource type="Script" path="res://main/room/train_station/person.gd" id="2_e7kq5"]
+[ext_resource type="AudioStream" uid="uid://b6vrx4ugclm8f" path="res://main/room/train_station/talk.ogg" id="3_qseih"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1twh0"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("3_qseih")
+stream_0/weight = 1.0
 
 [node name="Person" type="Sprite3D"]
 transform = Transform3D(1, 0, 0, 0, 0.715, 0, 0, 0, 1, 0, 0, 0)
@@ -11,3 +18,10 @@ texture_filter = 0
 texture = ExtResource("1_rscpc")
 script = ExtResource("2_e7kq5")
 colors = Array[Color]([Color(0, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1twh0")
+volume_db = -32.0
+unit_size = 1.2
+max_db = -8.0
+autoplay = true

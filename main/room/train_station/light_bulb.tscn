@@ -13,10 +13,9 @@ script = ExtResource("2_2tfxc")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, -2, 0, 0, 0, 2, 0, 0, 0)
-light_color = Color(0.796078, 0.854902, 0.8, 1)
+light_color = Color(0.67451, 0.815686, 0.627451, 1)
 light_energy = 1.375
 light_size = 0.2
-shadow_enabled = true
 omni_range = 3.175
 
 [node name="Timer" type="Timer" parent="."]
