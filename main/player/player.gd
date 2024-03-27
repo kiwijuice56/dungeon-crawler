@@ -2,14 +2,14 @@ class_name Player
 extends Node3D
 
 var STEP: float = 1.0
-var TURN_SPEED: float = 0.24
+var TURN_SPEED: float = 0.32
 var MOVE_SPEED: float = 0.25
 var ROLL: float = 0.04
 
 var INPUT: Array[String] = ["up", "down", "left", "right", "turn_left", "turn_right"]
 var DIR: Dictionary = {"up": Vector3(0, 0, -1), "down": Vector3(0, 0, 1), "left": Vector3(-1, 0, 0), "right": Vector3(1, 0, 0)}
 
-var input_queue: Array[String]
+var queued_input: String = ""
 var angle: float = 0
 var roll: float = 0
 
@@ -19,34 +19,32 @@ var roll_tween: Tween
 var can_move: bool = true
 
 func _process(delta: float) -> void:
-	for inp in INPUT:
-		var idx: int = input_queue.find(inp)
-		if Input.is_action_just_pressed(inp):
-			if idx != -1:
-				input_queue.remove_at(idx)
-			input_queue.append(inp)
-		if not Input.is_action_pressed(inp) and inp in input_queue:
-			input_queue.remove_at(idx)
-	
-	if not can_move:
-		return
-	
 	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 12)
+	var input: String = ""
 	
 	if is_instance_valid(tween):
+		for inp in INPUT:
+			if Input.is_action_just_pressed(inp):
+				queued_input = inp
+	else:
+		if queued_input != "":
+			input = queued_input
+			queued_input = ""
+		else:
+			for inp in INPUT:
+				if Input.is_action_pressed(inp):
+					input = inp
+	
+	if input == "" or not can_move or is_instance_valid(tween):
 		return
 	
 	roll = 0
 	
-	if len(input_queue) == 0:
-		return
-	
-	var inp: String = input_queue[-1]
-	if inp in DIR:
-		move(inp)
+	if input in DIR:
+		move(input)
 		
-	if inp in ["turn_left", "turn_right"]:
-		var mult: float = -1 if inp == "turn_right" else 1
+	if input in ["turn_left", "turn_right"]:
+		var mult: float = -1 if input == "turn_right" else 1
 		angle += 1 * mult
 		turn()
 

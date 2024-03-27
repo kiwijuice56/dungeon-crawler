@@ -2,13 +2,17 @@ class_name Main
 extends Node
 
 @onready var room: Room = $Room
+var first_loaded: bool = false
 
 func _ready() -> void:
-	load_room(preload("res://main/room/train_station/train_station.tscn"), "Root")
+	load_room(preload("res://main/room/baby_room/baby_room.tscn"), "Root")
 
 func load_room(new_room: PackedScene, origin: String) -> void:
 	Ref.player.can_move = false
-	await Ref.ui.trans_in()
+	
+	if first_loaded:
+		await Ref.ui.trans_in()
+	first_loaded = true
 	
 	if is_instance_valid(room):
 		room.queue_free()
