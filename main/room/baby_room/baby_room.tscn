@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddjwpaeghf6pt"]
+
+[ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_rrrl2"]
+[ext_resource type="MeshLibrary" uid="uid://br01bmrn8sn3p" path="res://main/room/grid_sets/toyblock/toyblock.tres" id="2_0ojty"]
+[ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_ypdea"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+panorama = ExtResource("2_ypdea")
+
+[sub_resource type="Sky" id="Sky_0vepx"]
+sky_material = SubResource("PanoramaSkyMaterial_7640v")
+
+[sub_resource type="Environment" id="Environment_6pouu"]
+background_mode = 1
+background_color = Color(0.0705882, 0.0705882, 0.239216, 1)
+sky = SubResource("Sky_0vepx")
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
+fog_light_color = Color(0.0705882, 0.0705882, 0.239216, 1)
+fog_density = 0.1835
+
+[node name="Room" instance=ExtResource("1_rrrl2")]
+
+[node name="GridMap" parent="." index="0"]
+mesh_library = ExtResource("2_0ojty")
+data = {
+"cells": PackedInt32Array(-65536, 2, 5, -65536, 1, 0, -1, 1, 5, -1, 2, 0, -1, 0, 4, -65536, 65535, 4, -65536, 0, 1, -1, 65535, 1, -2, 0, 5, -3, 65535, 5, -2, 65535, 0, -3, 0, 0, -2, 1, 4, -3, 2, 4, -3, 1, 1, -2, 2, 1, 65532, 2, 2, 65532, 1, 2, 65532, 0, 2, 65532, 65535, 2, 65533, 3, 1048578, 65534, 3, 1048578, 65535, 3, 1048578, 0, 3, 1048578, 1, 3, 1048578, 2, 3, 1048578, 3, 3, 1048578, -65535, 65535, 5, -65535, 0, 0, -65535, 1, 1, -65535, 2, 4, -65534, 65535, 0, -65534, 0, 5, -65534, 1, 4, -65534, 2, 1, -65533, 65535, 1, -65533, 0, 4, -65533, 1, 5, -65533, 2, 0, -65532, 65535, 4, -65532, 0, 1, -65532, 1, 0, -65532, 2, 5, -3, 65531, 5, -3, 65532, 0, -3, 65533, 1, -3, 65534, 4, -2, 65531, 0, -2, 65532, 5, -2, 65533, 4, -2, 65534, 1, -1, 65531, 1, -1, 65532, 4, -1, 65533, 5, -1, 65534, 0, -65536, 65531, 4, -65536, 65532, 1, -65536, 65533, 0, -65536, 65534, 5, -65535, 65531, 5, -65535, 65532, 0, -65535, 65533, 1, -65535, 65534, 4, -65534, 65531, 0, -65534, 65532, 5, -65534, 65533, 4, -65534, 65534, 1, -65533, 65531, 1, -65533, 65532, 4, -65533, 65533, 5, -65533, 65534, 0, -65532, 65531, 4, -65532, 65532, 1, -65532, 65533, 0, -65532, 65534, 5, 65532, 65534, 2, 65532, 65533, 2, 65532, 65532, 2, 65532, 65531, 2, 65532, 3, 3, 131068, 3, 3, 4, 3, 1048578, 131076, 4, 1048578, 131075, 4, 1048578, 131074, 4, 1048578, 131073, 4, 1048578, 131072, 4, 1048578, 196607, 4, 1048578, 196606, 4, 1048578, 196605, 4, 1048578, 196604, 4, 1048578, 196603, 2, 2, 196603, 1, 2, 196603, 0, 2, 196603, 65535, 2, 196603, 65534, 2, 196603, 65533, 2, 196603, 65532, 2, 196603, 65531, 2, 196603, 3, 2, 196603, 4, 3, 262139, 4, 3)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="WorldEnvironment" parent="." index="2"]
+environment = SubResource("Environment_6pouu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 1, 0)
+light_energy = 1.31
+light_angular_distance = 59.34

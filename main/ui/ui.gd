@@ -10,6 +10,9 @@ var options_len: int = 3
 
 signal accepted(choice)
 
+func _ready() -> void:
+	set_process_input(false)
+
 func _input(event: InputEvent) -> void:
 	var old_idx: int = idx
 	

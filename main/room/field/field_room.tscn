@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6i07kh2pjcab"]
+
+[ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_486hl"]
+[ext_resource type="PackedScene" uid="uid://bowxahrwp2jhv" path="res://main/room/field/field.tscn" id="2_47j1p"]
+[ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_ogtn5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+panorama = ExtResource("2_ogtn5")
+
+[sub_resource type="Sky" id="Sky_0vepx"]
+sky_material = SubResource("PanoramaSkyMaterial_7640v")
+
+[sub_resource type="Environment" id="Environment_3pepj"]
+background_mode = 2
+background_energy_multiplier = 1.1
+sky = SubResource("Sky_0vepx")
+fog_enabled = true
+fog_light_color = Color(0.705882, 0.85098, 1, 1)
+fog_density = 0.0557
+
+[node name="Field" instance=ExtResource("1_486hl")]
+
+[node name="WorldEnvironment" parent="." index="2"]
+environment = SubResource("Environment_3pepj")
+
+[node name="field" parent="." index="3" instance=ExtResource("2_47j1p")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4"]
+transform = Transform3D(0.836516, 0.224144, 0.5, -0.258819, 0.965926, 0, -0.482963, -0.12941, 0.866025, 0, 0, 0)
+light_color = Color(1, 1, 0.968627, 1)
+light_energy = 0.4
+light_angular_distance = 90.0

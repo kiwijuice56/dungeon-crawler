@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2k1cbx47d3ov"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_bd8f1"]
-[ext_resource type="PackedScene" uid="uid://bnmtgiwth0lnu" path="res://main/room/train_station/train_station.tscn" id="1_ronou"]
 [ext_resource type="PackedScene" uid="uid://dos4ovvsfyhpv" path="res://main/player/player.tscn" id="2_3gjuy"]
+[ext_resource type="PackedScene" uid="uid://ddjwpaeghf6pt" path="res://main/room/baby_room/baby_room.tscn" id="2_s58j1"]
 [ext_resource type="PackedScene" uid="uid://ctx0wmg7t5wmu" path="res://main/ui/ui.tscn" id="3_vusvi"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bd8f1")
 
-[node name="TrainStation" parent="." instance=ExtResource("1_ronou")]
+[node name="Room" parent="." instance=ExtResource("2_s58j1")]
 
 [node name="Player" parent="." instance=ExtResource("2_3gjuy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
 
 [node name="UI" parent="." instance=ExtResource("3_vusvi")]

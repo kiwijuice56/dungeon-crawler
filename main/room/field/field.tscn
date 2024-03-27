@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bowxahrwp2jhv"]
+
+[ext_resource type="PackedScene" uid="uid://cxa8wgw6ga5rh" path="res://main/room/field/field.blend" id="1_bfn2r"]
+[ext_resource type="Texture2D" uid="uid://c1q8n83am6po4" path="res://main/room/field/grass.png" id="2_0noki"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sye7f"]
+albedo_texture = ExtResource("2_0noki")
+metallic_specular = 0.0
+texture_filter = 0
+
+[node name="field" instance=ExtResource("1_bfn2r")]
+
+[node name="Plane_005" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sye7f")
