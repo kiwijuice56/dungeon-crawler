@@ -19,7 +19,7 @@ var roll_tween: Tween
 var can_move: bool = true
 
 func _process(delta: float) -> void:
-	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 12)
+	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 6)
 	var input: String = ""
 	
 	if is_instance_valid(tween):
@@ -35,10 +35,13 @@ func _process(delta: float) -> void:
 				if Input.is_action_pressed(inp):
 					input = inp
 	
-	if input == "" or not can_move or is_instance_valid(tween):
+	if is_instance_valid(tween):
 		return
 	
 	roll = 0
+	
+	if input == "" or not can_move:
+		return
 	
 	if input in DIR:
 		move(input)

@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://moamxkw586mh"]
+
+[ext_resource type="Texture2D" uid="uid://xrkp8lfrenaj" path="res://main/room/grid_sets/toyblock/floor5.png" id="1_cplha"]
+
+[sub_resource type="Animation" id="Animation_mrjsg"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_nu8jx"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcau8"]
+_data = {
+"RESET": SubResource("Animation_mrjsg"),
+"bob": SubResource("Animation_nu8jx")
+}
+
+[sub_resource type="GDScript" id="GDScript_lee0m"]
+script/source = "extends AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	speed_scale = randf() + 0.5
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_4s6cj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxqm6"]
+albedo_texture = ExtResource("1_cplha")
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(2.4786, 2.4786, 0)
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_ouu8l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv2_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_aotj7"]
+resource_name = "speen"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(4, 4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aanam"]
+_data = {
+"RESET": SubResource("Animation_ouu8l"),
+"speen": SubResource("Animation_aotj7")
+}
+
+[node name="FloatingCube" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -37)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MeshInstance3D")
+libraries = {
+"": SubResource("AnimationLibrary_bcau8")
+}
+autoplay = "bob"
+speed_scale = 0.3
+script = SubResource("GDScript_lee0m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4s6cj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bxqm6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_aanam")
+}
+autoplay = "speen"
+speed_scale = 0.2
