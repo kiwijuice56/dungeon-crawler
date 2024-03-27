@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dos4ovvsfyhpv"]
+[gd_scene load_steps=7 format=3 uid="uid://dos4ovvsfyhpv"]
 
 [ext_resource type="Script" path="res://main/player/player.gd" id="1_blhgx"]
 [ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_itxht"]
@@ -52,6 +52,10 @@ _data = {
 "bob": SubResource("Animation_bl0xc")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p8gux"]
+radius = 0.2
+height = 0.5
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_blhgx")
 
@@ -76,3 +80,11 @@ stream = ExtResource("2_itxht")
 volume_db = -9.0
 unit_size = 5.0
 pitch_scale = 1.1
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408408, 0)
+shape = SubResource("CapsuleShape3D_p8gux")

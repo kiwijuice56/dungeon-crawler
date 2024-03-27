@@ -1,15 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://bnmtgiwth0lnu"]
+[gd_scene load_steps=17 format=3 uid="uid://bnmtgiwth0lnu"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_t8r2g"]
+[ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_gvddc"]
 [ext_resource type="MeshLibrary" uid="uid://3aiqgrgm2sbe" path="res://main/room/grid_sets/railway/railway_grid_set.tres" id="2_u2sir"]
 [ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="3_ltpeg"]
 [ext_resource type="PackedScene" uid="uid://cc3b5cuxpq8wb" path="res://main/room/train_station/light_bulb.tscn" id="4_p0wv7"]
 [ext_resource type="Texture2D" uid="uid://civadrfviqm0q" path="res://main/room/train_station/sign.png" id="6_ywkri"]
 [ext_resource type="Texture2D" uid="uid://q0d7oqq2qr0d" path="res://main/room/train_station/sigh2.png" id="7_qghfl"]
 [ext_resource type="Script" path="res://main/room/train_station/person_spawner.gd" id="7_uucyw"]
+[ext_resource type="PackedScene" uid="uid://b0db3jrq7rx53" path="res://main/teleporter/teleporter.tscn" id="8_rpvcq"]
+[ext_resource type="PackedScene" uid="uid://ddjwpaeghf6pt" path="res://main/room/baby_room/baby_room.tscn" id="9_athjp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+resource_local_to_scene = false
+resource_name = ""
 panorama = ExtResource("3_ltpeg")
+filter = true
 
 [sub_resource type="Sky" id="Sky_0vepx"]
 sky_material = SubResource("PanoramaSkyMaterial_7640v")
@@ -31,6 +37,7 @@ albedo_texture = ExtResource("7_qghfl")
 texture_filter = 0
 
 [node name="TrainStation" instance=ExtResource("1_t8r2g")]
+step_sound = ExtResource("2_gvddc")
 
 [node name="GridMap" parent="." index="0"]
 mesh_library = ExtResource("2_u2sir")
@@ -176,3 +183,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2d6m2")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 0.8, 0, -8.74228e-08, 0, -1, 10, 2.5, 5.98)
 mesh = SubResource("QuadMesh_ypr72")
 surface_material_override/0 = SubResource("StandardMaterial3D_mntvs")
+
+[node name="Root" parent="Origins" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 0.5)
+
+[node name="Teleporter" parent="Teleporters" index="0" instance=ExtResource("8_rpvcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2.5, 0.5)
+target = ExtResource("9_athjp")
+origin = "Root"

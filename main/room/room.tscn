@@ -5,7 +5,10 @@
 [ext_resource type="MeshLibrary" uid="uid://mxewicwoprq1" path="res://main/room/grid_sets/basic_grid_set.tres" id="2_r7457"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+resource_local_to_scene = false
+resource_name = ""
 panorama = ExtResource("2_fqngn")
+filter = true
 
 [sub_resource type="Sky" id="Sky_0vepx"]
 sky_material = SubResource("PanoramaSkyMaterial_7640v")
@@ -28,3 +31,14 @@ cell_size = Vector3(1, 1, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_od7lq")
+
+[node name="Origins" type="Node3D" parent="."]
+
+[node name="Root" type="Marker3D" parent="Origins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+gizmo_extents = 1.5
+
+[node name="Teleporters" type="Node3D" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true

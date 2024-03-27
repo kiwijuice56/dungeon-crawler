@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddjwpaeghf6pt"]
+[gd_scene load_steps=8 format=3 uid="uid://ddjwpaeghf6pt"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_rrrl2"]
 [ext_resource type="MeshLibrary" uid="uid://br01bmrn8sn3p" path="res://main/room/grid_sets/toyblock/toyblock.tres" id="2_0ojty"]
+[ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_w8v7a"]
 [ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_ypdea"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
+resource_local_to_scene = false
+resource_name = ""
 panorama = ExtResource("2_ypdea")
+filter = true
 
 [sub_resource type="Sky" id="Sky_0vepx"]
 sky_material = SubResource("PanoramaSkyMaterial_7640v")
@@ -20,6 +24,7 @@ fog_light_color = Color(0.0705882, 0.0705882, 0.239216, 1)
 fog_density = 0.1835
 
 [node name="Room" instance=ExtResource("1_rrrl2")]
+step_sound = ExtResource("2_w8v7a")
 
 [node name="GridMap" parent="." index="0"]
 mesh_library = ExtResource("2_0ojty")

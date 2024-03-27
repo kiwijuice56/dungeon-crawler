@@ -76,3 +76,11 @@ func show_options(options: Array, speed: float = 0.03) -> int:
 	selecting = false
 	
 	return out
+
+func trans_in() -> void:
+	$AnimationPlayer.play("in")
+	await $AnimationPlayer.animation_finished
+
+func trans_out() -> void:
+	$AnimationPlayer.play("out")
+	await $AnimationPlayer.animation_finished

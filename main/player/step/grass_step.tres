@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://dfiv5j1hqtnob"]
+
+[ext_resource type="AudioStream" uid="uid://ouncfcn71dly" path="res://main/player/step/grass1.ogg" id="1_lurt8"]
+[ext_resource type="AudioStream" uid="uid://yh03jk8vgq46" path="res://main/player/step/grass2.ogg" id="2_wiier"]
+[ext_resource type="AudioStream" uid="uid://c4xuk4e5n56i6" path="res://main/player/step/grass3.ogg" id="3_fuydk"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_lurt8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_wiier")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_fuydk")
+stream_2/weight = 1.0
