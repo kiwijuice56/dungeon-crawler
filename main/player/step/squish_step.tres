@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://bawsbvm5dfkdo"]
+
+[ext_resource type="AudioStream" uid="uid://u1cu3y26m7h0" path="res://main/player/step/squish1.ogg" id="1_bug5v"]
+[ext_resource type="AudioStream" uid="uid://e2a0q1eos6gm" path="res://main/player/step/squish2.ogg" id="2_4b1a3"]
+
+[resource]
+random_pitch = 1.4
+streams_count = 2
+stream_0/stream = ExtResource("1_bug5v")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_4b1a3")
+stream_1/weight = 1.0

@@ -5,10 +5,7 @@
 [ext_resource type="MeshLibrary" uid="uid://mxewicwoprq1" path="res://main/room/grid_sets/basic_grid_set.tres" id="2_r7457"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
-resource_local_to_scene = false
-resource_name = ""
 panorama = ExtResource("2_fqngn")
-filter = true
 
 [sub_resource type="Sky" id="Sky_0vepx"]
 sky_material = SubResource("PanoramaSkyMaterial_7640v")

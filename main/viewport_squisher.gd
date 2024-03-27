@@ -6,4 +6,5 @@ func _ready() -> void:
 
 func _on_resized() -> void:
 	var ratio: float = get_viewport().get_window().size.y / 256.0
+	@warning_ignore("narrowing_conversion")
 	size_2d_override.x = get_viewport().get_window().size.x / ratio

@@ -1,0 +1,15 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://beupguhtlbtit"]
+
+[ext_resource type="AudioStream" uid="uid://mehlx7s8l5ra" path="res://main/player/step/snow_step1.ogg" id="1_fds2r"]
+[ext_resource type="AudioStream" uid="uid://cjpnedfxd3ur4" path="res://main/player/step/snow_step2.ogg" id="2_x8cv5"]
+[ext_resource type="AudioStream" uid="uid://csim2k881pbp8" path="res://main/player/step/snow_step3.ogg" id="3_gvpls"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("1_fds2r")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_x8cv5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_gvpls")
+stream_2/weight = 1.0

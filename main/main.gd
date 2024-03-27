@@ -1,11 +1,11 @@
 class_name Main
 extends Node
 
-@onready var room: Room = $Room
+@onready var room: Room 
 var first_loaded: bool = false
 
 func _ready() -> void:
-	load_room(preload("res://main/room/field/field_room.tscn"), "Root")
+	load_room(preload("res://main/room/face_face/face_face.tscn"), "Root")
 
 func load_room(new_room: PackedScene, origin: String) -> void:
 	Ref.player.can_move = false

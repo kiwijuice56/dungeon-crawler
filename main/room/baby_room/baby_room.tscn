@@ -8,10 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://moamxkw586mh" path="res://main/room/baby_room/floating_cube.tscn" id="6_nlf5a"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
-resource_local_to_scene = false
-resource_name = ""
 panorama = ExtResource("2_ypdea")
-filter = true
 
 [sub_resource type="Sky" id="Sky_0vepx"]
 sky_material = SubResource("PanoramaSkyMaterial_7640v")
