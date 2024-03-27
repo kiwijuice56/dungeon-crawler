@@ -188,6 +188,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mntvs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 0.5)
 
 [node name="Teleporter" parent="Teleporters" index="0" instance=ExtResource("8_rpvcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.5, 0.5)
 target = ExtResource("9_athjp")
 origin = "Root"

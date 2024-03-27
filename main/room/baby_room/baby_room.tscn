@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddjwpaeghf6pt"]
+[gd_scene load_steps=9 format=3 uid="uid://ddjwpaeghf6pt"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_rrrl2"]
 [ext_resource type="MeshLibrary" uid="uid://br01bmrn8sn3p" path="res://main/room/grid_sets/toyblock/toyblock.tres" id="2_0ojty"]
 [ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_w8v7a"]
 [ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_ypdea"]
+[ext_resource type="AudioStream" uid="uid://b5lw3lmylkjgt" path="res://main/room/baby_room/passedthebar.ogg" id="5_xkuoh"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
 resource_local_to_scene = false
@@ -40,3 +41,6 @@ environment = SubResource("Environment_6pouu")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 1, 0)
 light_energy = 1.31
 light_angular_distance = 59.34
+
+[node name="MusicPlayer" parent="." index="6"]
+stream = ExtResource("5_xkuoh")

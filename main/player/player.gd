@@ -2,7 +2,7 @@ class_name Player
 extends Node3D
 
 var STEP: float = 1.0
-var TURN_SPEED: float = 0.32
+var TURN_SPEED: float = 0.24
 var MOVE_SPEED: float = 0.25
 var ROLL: float = 0.04
 
@@ -19,11 +19,6 @@ var roll_tween: Tween
 var can_move: bool = true
 
 func _process(delta: float) -> void:
-	if not can_move:
-		return
-	
-	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 12)
-	
 	for inp in INPUT:
 		var idx: int = input_queue.find(inp)
 		if Input.is_action_just_pressed(inp):
@@ -32,6 +27,11 @@ func _process(delta: float) -> void:
 			input_queue.append(inp)
 		if not Input.is_action_pressed(inp) and inp in input_queue:
 			input_queue.remove_at(idx)
+	
+	if not can_move:
+		return
+	
+	%Camera3D.rotation.z = lerp(%Camera3D.rotation.z, roll, delta * 12)
 	
 	if is_instance_valid(tween):
 		return

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dos4ovvsfyhpv"]
+[gd_scene load_steps=8 format=3 uid="uid://dos4ovvsfyhpv"]
 
 [ext_resource type="Script" path="res://main/player/player.gd" id="1_blhgx"]
 [ext_resource type="AudioStream" uid="uid://divb6fnhskruu" path="res://main/player/step/solid_step.tres" id="2_itxht"]
+[ext_resource type="AudioStream" uid="uid://t08acs7xm4vi" path="res://main/player/teleport.ogg" id="3_7qfrp"]
 
 [sub_resource type="Animation" id="Animation_608c5"]
 length = 0.001
@@ -88,3 +89,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408408, 0)
 shape = SubResource("CapsuleShape3D_p8gux")
+
+[node name="TeleportPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7qfrp")

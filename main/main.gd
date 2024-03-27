@@ -15,7 +15,7 @@ func load_room(new_room: PackedScene, origin: String) -> void:
 	room = new_room.instantiate()
 	add_child(room)
 	Ref.player.global_position = room.get_node("Origins").get_node(origin).global_position
-	Ref.player.global_rotation = room.get_node("Origins").get_node(origin).global_rotation
+	# Ref.player.global_rotation = room.get_node("Origins").get_node(origin).global_rotation
 	Ref.player.get_node("StepPlayer").stream = room.step_sound
 	
 	await Ref.ui.trans_out()
