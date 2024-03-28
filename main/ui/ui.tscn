@@ -173,6 +173,7 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="SanityLabel" type="Label" parent="SubViewportContainer/SubViewport/MarginContainer/VBoxContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 10

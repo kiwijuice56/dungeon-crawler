@@ -1,64 +1,87 @@
 [gd_scene load_steps=12 format=3 uid="uid://dyxr8m8688ys"]
 
 [ext_resource type="PackedScene" uid="uid://b0fjkfub1d6ft" path="res://main/room/room.tscn" id="1_mvp8c"]
-[ext_resource type="MeshLibrary" uid="uid://b5vg6bpvdq0ey" path="res://main/room/grid_sets/building/building.tres" id="2_elwh6"]
-[ext_resource type="Texture2D" uid="uid://bcxyqnv3eksiv" path="res://main/room/train_station/sky.jpg" id="2_is6co"]
-[ext_resource type="Shader" path="res://main/room/pool/water.gdshader" id="2_k2nqm"]
+[ext_resource type="MeshLibrary" uid="uid://dlfimgnba4yqm" path="res://main/room/grid_sets/tiles/pooltiles.tres" id="2_fb5nu"]
+[ext_resource type="AudioStream" uid="uid://bawsbvm5dfkdo" path="res://main/player/step/squish_step.tres" id="2_mbo4j"]
+[ext_resource type="PackedScene" uid="uid://ctcx8eib5w64u" path="res://main/room/pool/water.tscn" id="4_2im6y"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7640v"]
-panorama = ExtResource("2_is6co")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ke5hv"]
+load_path = "res://.godot/imported/sky.jpg-47685cf9b7b464db47b8cbf2d7a540c8.s3tc.ctex"
 
-[sub_resource type="Sky" id="Sky_0vepx"]
-sky_material = SubResource("PanoramaSkyMaterial_7640v")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w5v27"]
+panorama = SubResource("CompressedTexture2D_ke5hv")
+filter = false
 
-[sub_resource type="Environment" id="Environment_ytkih"]
+[sub_resource type="Sky" id="Sky_sq2uc"]
+sky_material = SubResource("PanoramaSkyMaterial_w5v27")
+
+[sub_resource type="Environment" id="Environment_xxko8"]
 background_mode = 2
-sky = SubResource("Sky_0vepx")
+sky = SubResource("Sky_sq2uc")
 ambient_light_sky_contribution = 0.0
+fog_density = 0.09
 
-[sub_resource type="BoxMesh" id="BoxMesh_lwvum"]
-subdivide_width = 128
-subdivide_height = 128
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_46chd"]
-fractal_octaves = 6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q01lj"]
-width = 1024
-height = 1024
-generate_mipmaps = false
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_46chd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6ith"]
-render_priority = 0
-shader = ExtResource("2_k2nqm")
-shader_parameter/speed = 0.00200005
-shader_parameter/color = Color(0.00392157, 0.00392157, 0.0588235, 0.423529)
-shader_parameter/edge_color = Color(0.427451, 0.490196, 0.568627, 0.4)
-shader_parameter/edge_scale = 0.25
-shader_parameter/near = 0.1
-shader_parameter/far = 100.0
-shader_parameter/wave_strengh = Vector2(0.02, 0.02)
-shader_parameter/wave_frequency = Vector2(12, 12)
-shader_parameter/time_factor = Vector2(1, 2)
-shader_parameter/noise1 = SubResource("NoiseTexture2D_q01lj")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_q01lj")
-shader_parameter/normalmap = SubResource("NoiseTexture2D_q01lj")
-
-[node name="Pool" instance=ExtResource("1_mvp8c")]
-
-[node name="GridMap" parent="." index="0"]
-mesh_library = ExtResource("2_elwh6")
-data = {
-"cells": PackedInt32Array(-1, 65535, 2, -65536, 65535, 2, -65536, 65534, 2, -1, 65534, 2, -2, 65534, 2, -2, 65535, 2, -1, 65533, 2, -65536, 65533, 2, -2, 65533, 2, -1, 0, 2, -65535, 65534, 2, -65535, 65533, 2, -65535, 65535, 2, -65535, 0, 2, -65536, 0, 2, -1, 1, 2, -2, 1, 2, -2, 0, 2, -65535, 1, 2, -65536, 1, 2)
+[sub_resource type="Animation" id="Animation_dikm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:sky_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
-[node name="WorldEnvironment" parent="." index="2"]
-environment = SubResource("Environment_ytkih")
+[sub_resource type="Animation" id="Animation_y3jom"]
+resource_name = "speeen"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:sky_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 12.5664, 0), Vector3(0, 0, 0)]
+}
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="6"]
-transform = Transform3D(32, 0, 0, 0, 0.1, 0, 0, 0, 32, 0, -0.0383818, 0)
-mesh = SubResource("BoxMesh_lwvum")
-surface_material_override/0 = SubResource("ShaderMaterial_i6ith")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fdco"]
+_data = {
+"RESET": SubResource("Animation_dikm5"),
+"speeen": SubResource("Animation_y3jom")
+}
+
+[node name="Pool" instance=ExtResource("1_mvp8c")]
+step_sound = ExtResource("2_mbo4j")
+
+[node name="GridMap" parent="." index="0"]
+mesh_library = ExtResource("2_fb5nu")
+data = {
+"cells": PackedInt32Array(65534, 1, 0, 65534, 65534, 0, 1, 1, 0, 1, 65534, 0, -2, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65535, 0, 0, -65535, 65535, 0, -65535, 65534, 0, -65536, 65534, 0, -65536, 65535, 0, -65536, 0, 0, -1, 0, 0, -2, 65535, 0, -1, 65535, 0, -2, 0, 0, -2, 65534, 0, -1, 65534, 0, -65534, 65534, 0, -65534, 65535, 0, -65534, 0, 0, -65534, 1, 0, -65535, 2, 0, -65535, 3, 0, -65536, 3, 0, -1, 3, 0, -65536, 2, 0, -65536, 4, 0, -1, 4, 0, -2, 3, 0, -1, 2, 0, -2, 2, 0, -3, 1, 0, -3, 0, 0, -3, 65535, 0, -3, 65534, 0, -4, 65534, 0, -3, 2, 0, -4, 65535, 0, -4, 0, 0, -4, 1, 0, -65534, 2, 0, -65533, 1, 0, -65533, 0, 0, -65533, 65535, 0, -65533, 65534, 0, -3, 65533, 0, -2, 65533, 0, -1, 65533, 0, -65536, 65533, 0, -65535, 65533, 0, -65534, 65533, 0, -2, 65532, 0, -1, 65532, 0, -65536, 65532, 0, -65535, 65532, 0, -65536, 65531, 0, -1, 65531, 0, -65532, 0, 0, -65532, 65535, 0, -5, 0, 0, -5, 65535, 0, 65537, 1, 0, 65537, 65534, 0, 131070, 65534, 0, 131070, 1, 0, 131073, 1, 0, 131073, 65534, 0, 196606, 65534, 0, 196606, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196609, 0, 0, 196609, 65535, 0, 196609, 65534, 0, 196608, 65534, 0, 262143, 65534, 0, 262142, 65534, 0, 262142, 65535, 0, 262142, 0, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="WorldEnvironment" parent="." index="2"]
+environment = SubResource("Environment_xxko8")
+
+[node name="Water" parent="." index="6" instance=ExtResource("4_2im6y")]
+transform = Transform3D(32, 0, 0, 0, 0.1, 0, 0, 0, 32, 0, 0.0515595, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="7"]
+transform = Transform3D(-0.724693, -0.401553, 0.559978, 0.122761, 0.724418, 0.678342, -0.678049, 0.560333, -0.475686, 0, 0.913378, 0)
+light_energy = 1.02
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_2fdco")
+}
+autoplay = "speeen"
+speed_scale = 0.001

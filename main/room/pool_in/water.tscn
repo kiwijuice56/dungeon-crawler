@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbwotrc3jjuth"]
+
+[ext_resource type="Shader" path="res://main/room/pool/water.gdshader" id="1_wycta"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lwvum"]
+subdivide_width = 128
+subdivide_height = 128
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_46chd"]
+fractal_octaves = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q01lj"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_46chd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6ith"]
+render_priority = 0
+shader = ExtResource("1_wycta")
+shader_parameter/speed = 0.00200005
+shader_parameter/color = Color(0.00392157, 0.00392157, 0.0588235, 0.423529)
+shader_parameter/edge_color = Color(0.427451, 0.490196, 0.568627, 0.4)
+shader_parameter/edge_scale = 0.25
+shader_parameter/near = 0.1
+shader_parameter/far = 100.0
+shader_parameter/wave_strengh = Vector2(0.1, 0.1)
+shader_parameter/wave_frequency = Vector2(64, 64)
+shader_parameter/time_factor = Vector2(1, 2)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_q01lj")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_q01lj")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_q01lj")
+
+[node name="Water" type="MeshInstance3D"]
+transform = Transform3D(32, 0, 0, 0, 0.1, 0, 0, 0, 32, 0, -0.0383818, 0)
+mesh = SubResource("BoxMesh_lwvum")
+surface_material_override/0 = SubResource("ShaderMaterial_i6ith")

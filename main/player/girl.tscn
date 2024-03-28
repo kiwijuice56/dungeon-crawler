@@ -4,8 +4,21 @@
 
 [node name="girl" instance=ExtResource("1_m4o5y")]
 
-[node name="Cube_004" parent="." index="3"]
+[node name="Cube_004" parent="." index="1"]
 visible = false
 
-[node name="Cube_005" parent="." index="4"]
+[node name="Cube_005" parent="." index="2"]
 visible = false
+
+[node name="Skeleton3D" parent="Armature_001" index="0"]
+bones/2/rotation = Quaternion(0.00869075, -0.0429265, 0.98001, -0.194068)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.0884059, -7.78959e-08, -0.00144509, 0.996083)
+bones/4/rotation = Quaternion(0.6941, -0.135001, 0.700544, 0.0961131)
+bones/5/rotation = Quaternion(-0.025811, 2.02847e-05, -0.0549186, 0.998157)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.0112689, 0, 0, 0.999937)
+bones/10/rotation = Quaternion(0.0112689, 0, 0, 0.999937)
+
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = "hi"

@@ -5,7 +5,8 @@ extends Node
 var first_loaded: bool = false
 
 func _ready() -> void:
-	load_room(preload("res://main/room/pool/pool.tscn"), "Root")
+	Engine.print_error_messages = false
+	load_room(preload("res://main/room/pool_in/poolin.tscn"), "Root")
 
 func load_room(new_room: PackedScene, origin: String) -> void:
 	Ref.player.can_move = false
